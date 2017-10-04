@@ -32,10 +32,17 @@ class HomeController < ApplicationController
       @title = "Chat"
       render :action => "chat"
     rescue ActionView::MissingTemplate
-      render :html => ("<div class=\"box wide\">" <<
-        "<div class=\"legend\">Chat</div>" <<
-        "Keep it on-site" <<
-        "</div>").html_safe, :layout => "application"
+      if @user
+		  render :html => ("<div class=\"box wide\">" <<
+			"<div class=\"legend\">Chat</div>" <<
+			"<iframe id='web-chat-frame' src='https://webchat.freenode.net?channels=%23oborlobsters'></iframe>" <<
+			"</div>").html_safe, :layout => "application"
+      else
+		  render :html => ("<div class=\"box wide\">" <<
+			"<div class=\"legend\">Chat</div>" <<
+			"<p>Only logged-in users can chat.</p>" <<
+			"</div>").html_safe, :layout => "application"
+      end
     end
   end
 

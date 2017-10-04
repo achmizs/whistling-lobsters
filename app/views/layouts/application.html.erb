@@ -15,7 +15,7 @@
       <meta name="<%= k %>" content="<%= v %>" />
     <% end %>
   <% end %>
-  <link rel="shortcut icon" href="/favicon.ico" />
+  <%= favicon_link_tag %>
   <% if @short_url %>
     <link rev="canonical" rel="self alternate shorter shorturl shortlink"
       href="<%= @short_url %>" />
@@ -44,9 +44,8 @@
   <div id="wrapper">
     <div id="header">
       <div id="headerleft">
-        <a id="l_holder" style="background-color: #<%= @traffic_color %>;"
-          href="/" title="<%= Rails.application.name %> (Current traffic: <%=
-          @traffic.to_i %>)"></a>
+        <a id="l_holder" href="/" title="<%= Rails.application.name %> (Current traffic: <%=
+          @traffic.to_i %>)"><%= image_tag "favicon.ico" %></a>
 
         <% if @cur_url.present? && !header_links.keys.include?(@cur_url) &&
         @heading.present? %>
@@ -88,6 +87,7 @@
         <% if lookup_context.template_exists?("footer", "layouts", true) %>
           <%= render :partial => "layouts/footer" %>
         <% else %>
+          <a href="https://wiki.obormot.net/Lobsters/">Issues</a>
           <a href="/moderations">Moderation Log</a>
           <% if @user && @user.can_see_invitation_requests? &&
           (iqc = InvitationRequest.verified_count) > 0 %>

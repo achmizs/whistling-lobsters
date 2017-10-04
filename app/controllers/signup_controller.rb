@@ -54,7 +54,8 @@ class SignupController < ApplicationController
       Countinual.count!("#{Rails.application.shortname}.users.total",
         User.count)
 
-      return redirect_to "/signup/invite"
+      return redirect_to "/"
+#      return redirect_to "/signup/invite"
     else
       render :action => "invited"
     end
