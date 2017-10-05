@@ -87,7 +87,8 @@
         <% if lookup_context.template_exists?("footer", "layouts", true) %>
           <%= render :partial => "layouts/footer" %>
         <% else %>
-          <a href="https://wiki.obormot.net/Lobsters/">Issues</a>
+          <a href="https://wiki.obormot.net/Lobsters/ITS">Issues</a>
+          <a href="https://wiki.obormot.net/Lobsters/">Wiki</a>
           <a href="/moderations">Moderation Log</a>
           <% if @user && @user.can_see_invitation_requests? &&
           (iqc = InvitationRequest.verified_count) > 0 %>
