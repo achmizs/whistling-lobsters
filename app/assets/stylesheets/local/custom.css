@@ -1,0 +1,30 @@
+li.story div.details span.link a[href^="/"] {
+	color: #1f7f00;
+}
+
+li.story div.details span.link a[href^="/"]:visited {
+	color: #80a37a;
+}
+
+#l_holder {
+	width: 32px;
+	height: 32px;
+	position: relative;
+	top: -7px;
+}
+
+#l_holder img {
+	width: 32px;
+	height: 32px;
+}
+
+#web-chat-frame {
+    width: 100%;
+    max-height: calc(100vh - 180px);
+    height: 1200px;
+}
+
+#header {
+	margin-left: -16px;
+}
+
