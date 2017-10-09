@@ -55,7 +55,7 @@ class="comment <%= comment.current_vote ? (comment.current_vote[:vote] == 1 ?
         <span class="merge"></span>
       <% end %>
 
-      <% if (@user && @user.show_avatars?) || !@user %>
+      <% if (@user && @user.show_avatars?) %>
         <a href="/u/<%= comment.user.username %>"><%=
           avatar_img(comment.user, 16) %></a>
       <% end %>
