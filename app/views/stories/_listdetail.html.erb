@@ -64,7 +64,7 @@ class="story <%= story.vote && story.vote[:vote] == 1 ? "upvoted" : "" %>
               break_long_words(ms.domain) %></a>
           <% end %>
           <span class="byline">
-            <% if (@user && @user.show_avatars?) || !@user %>
+            <% if (@user && @user.show_avatars?) %>
               <a href="/u/<%= ms.user.username %>"><%=
                 avatar_img(ms.user, 16) %></a>
             <% end %>
@@ -96,7 +96,7 @@ class="story <%= story.vote && story.vote[:vote] == 1 ? "upvoted" : "" %>
     <% end %>
 
     <div class="byline">
-      <% if (@user && @user.show_avatars?) || !@user %>
+      <% if (@user && @user.show_avatars?) %>
         <a href="/u/<%= story.user.username %>"><%=
           avatar_img(story.user, 16) %></a>
       <% end %>
