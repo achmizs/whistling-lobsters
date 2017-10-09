@@ -310,8 +310,9 @@ var _Lobsters = Class.extend({
       if (data) {
         if (data.title)
           title_field.val(data.title.substr(0, title_field.maxLength));
-        if (data.url)
-          url_field.val(data.url);
+        // Don't change original URL, fixes bug 00009
+        //if (data.url)
+        //  url_field.val(data.url);
       }
 
       button.val(old_value);
