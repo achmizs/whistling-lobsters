@@ -22,6 +22,7 @@ public/avatars
 node_modules/
 yarn-error.log
 yarn.lock
+app/assets/stylesheets/local/test.css
 
 # templates to be created per-site
 # app/views/home/privacy.*
