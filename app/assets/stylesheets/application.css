@@ -1186,6 +1186,15 @@ table.data td p:last-child {
 	margin-left: 12em;
 }
 
+.top_range_menu {
+  margin-left: 50px;
+  position: relative;
+  top: -0.33em;
+}
+
+.top_range_menu a {
+  font-weight: normal;
+}
 
 /* for flash_notices() and flash_errors() */
 
