@@ -2,7 +2,7 @@ Lobsters::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
-  config.cache_classes = true
+  config.cache_classes = false
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
@@ -10,9 +10,9 @@ Lobsters::Application.configure do
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
 
-  # Full error reports are disabled and caching is turned on.
-  config.consider_all_requests_local       = false
-  config.action_controller.perform_caching = true
+  # Show full error reports and disable caching.
+  config.consider_all_requests_local       = true
+  config.action_controller.perform_caching = false
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
   # Add `rack-cache` to your Gemfile before enabling this.
@@ -27,7 +27,12 @@ Lobsters::Application.configure do
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = true
+  ## config.assets.compile = true
+
+  # Debug mode disables concatenation and preprocessing of assets.
+  # This option may cause significant delays in view rendering with a large
+  # number of complex assets.
+  config.assets.debug = true;
 
   # Generate digests for assets URLs.
   config.assets.digest = true
@@ -58,13 +63,13 @@ Lobsters::Application.configure do
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.raise_delivery_errors = false
   
   # Use sendmail
-  config.action_mailer.delivery_method = :sendmail
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_options = { from: 'no-reply@obormot.net' }
-  config.action_mailer.sendmail_settings = { location: '/usr/bin/sendmail' }
+  # config.action_mailer.delivery_method = :sendmail
+  # config.action_mailer.perform_deliveries = true
+  # config.action_mailer.default_options = { from: 'no-reply@obormot.net' }
+  # config.action_mailer.sendmail_settings = { location: '/usr/bin/sendmail' }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
