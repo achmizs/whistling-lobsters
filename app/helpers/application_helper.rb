@@ -38,6 +38,7 @@ module ApplicationHelper
 
     @header_links = {
       "/" => { :title => @cur_url == "/" ? Rails.application.name : "Home" },
+      "/top" => { :title => "Top" },
       "/recent" => { :title => "Recent" },
       "/comments" => { :title => "Comments" },
     }

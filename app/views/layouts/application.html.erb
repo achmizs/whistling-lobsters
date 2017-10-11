@@ -72,6 +72,17 @@
       </div>
 
       <div class="clear"></div>
+
+      <% if @cur_url =~ /^\/top/ %>
+        <div class="top_range_menu">
+          <span class="headerlinks">
+            <a href="/top/1d">Today</a>
+            <a href="/top/3d">3 Days</a>
+            <a href="/top/1w">Week</a>
+            <a href="/top/1m">Month</a>
+          </span>
+        </div>
+      <% end %>
     </div>
 
     <div id="inside">

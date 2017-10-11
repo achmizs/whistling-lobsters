@@ -39,6 +39,15 @@
 		clear: both;
 	}
 
+  .top_range_menu {
+    position: inherit;
+    margin-top: 0.25em;
+    margin-bottom: -0.5em;
+    border-top: 1px solid #ccc;
+    margin-left: 0;
+    padding-left: 1em;
+  }
+
 	.headerlinks a,
 	#headerright .headerlinks a {
 		padding-right: 0.25em;
