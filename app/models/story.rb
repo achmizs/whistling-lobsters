@@ -282,6 +282,14 @@ class Story < ActiveRecord::Base
     end
   end
 
+  def can_display_clicks_to_user?(user)
+    if user && ((user.id == self.user_id) || user.is_moderator?)
+      return true
+    end
+
+  return false
+  end
+
   def comments_path
     "#{short_id_path}/#{self.title_as_url}"
   end

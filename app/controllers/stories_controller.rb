@@ -9,6 +9,15 @@ class StoriesController < ApplicationController
     :update ]
   before_action :find_story!, :only => [ :suggest, :submit_suggestions ]
 
+  def click
+    if !(story = find_story)
+      return render :plain => "can't find story", :status => 400
+    end
+    story.clicks += 1
+    story.save
+    return render :plain => story.clicks
+  end
+
   def create
     @title = "Submit Story"
     @cur_url = "/stories/new"
@@ -110,6 +119,7 @@ class StoriesController < ApplicationController
     @story.user_id = @user.id
     @story.previewing = true
 
+    @story.clicks = 0
     @story.vote = Vote.new(:vote => 1)
     @story.upvotes = 1
 
