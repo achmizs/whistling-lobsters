@@ -528,7 +528,7 @@ li .tags {
 	margin-right: 0.25em;
 }
 
-li .domain {
+li .domain, li .clicks {
 	color: #888;
 	font-style: italic;
 	font-size: 9pt;

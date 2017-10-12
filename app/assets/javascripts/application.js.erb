@@ -59,6 +59,9 @@ var _Lobsters = Class.extend({
 
     $.post("/stories/" + li.attr("data-shortid") + "/" + act);
   },
+  clickStory: function(shortid) {
+    $.ajax("/stories/" + shortid + "/click", {async: false, method: 'POST'});
+  },
 
   upvoteComment: function(voterEl) {
     Lobsters.vote("comment", voterEl, 1);
@@ -358,6 +361,11 @@ $(document).ready(function() {
   $("li.story a.saver").click(function() {
     Lobsters.saveStory(this);
     return false;
+  });
+
+  $("span.link a[data-shortid]").click(function() {
+    var shortid = $(this).attr("data-shortid");
+    Lobsters.clickStory(shortid);
   });
 
   $("a.mod_story_link").click(function() {

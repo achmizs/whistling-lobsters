@@ -19,7 +19,7 @@ class="story <%= story.vote && story.vote[:vote] == 1 ? "upvoted" : "" %>
   <div class="details">
     <span class="link">
       <% if story.can_be_seen_by_user?(@user) %>
-        <a href="<%= story.url_or_comments_path %>"><%=
+        <a href="<%= story.url_or_comments_path %>" data-shortid="<%= story.short_id %>"><%=
           break_long_words(story.title) %></a>
       <% end %>
       <% if story.is_gone? %>
@@ -42,6 +42,11 @@ class="story <%= story.vote && story.vote[:vote] == 1 ? "upvoted" : "" %>
       <% if story.domain.present? %>
         <a class="domain" href="<%= story.domain_search_url %>"><%=
           break_long_words(story.domain) %></a>
+      <% end %>
+      <% if story.can_display_clicks_to_user?(@user) %>
+        <span class="clicks">
+          (<%= story.clicks %> clicks)
+        </span>
       <% end %>
 
       <% if defined?(single_story) && single_story %>
