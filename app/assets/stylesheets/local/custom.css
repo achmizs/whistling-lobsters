@@ -28,3 +28,71 @@ li.story div.details span.link a[href^="/"]:visited {
 	margin-left: -16px;
 }
 
+.about-page-text span {
+	line-height: inherit;
+}
+
+.inactive-feature,
+.inactive-feature a {
+	color: #bbb;
+}
+
+.about-page-text {
+	position: relative;
+}
+
+.inactive-feature:hover::before {
+	content: "This feature is currently unavailable.";
+	position: absolute;
+	right: 100%;
+	color: #c00;
+	display: inline-block;
+	padding: 4px 6px;
+	background-color: #ffa;
+	border: 1px solid #aaa;
+	white-space: nowrap;
+}
+
+.about-page-text ul.table-of-contents {
+	list-style-type: none;
+	padding: 32px 10px 6px 10px;
+	border: 1px solid #999;
+	display: inline-block;
+	position: relative;
+}
+
+.about-page-text ul.table-of-contents::before {
+	content: "Contents";
+	font-weight: bold;
+	font-size: 1.1em;
+	position: absolute;
+	top: 4px;
+	left: 10px;
+}
+
+.about-page-text ul.table-of-contents ul {
+	list-style-type: none;
+	font-size: 0.9em;
+	padding-left: 1.5em;
+}
+
+.about-page-text ul.table-of-contents a {
+	text-decoration: none;
+}
+
+.about-page-text ul.table-of-contents a:hover {
+	text-decoration: underline;
+}
+
+.about-page-text ul.table-of-contents li.subhead {
+	margin-top: 0.5em;
+	font-weight: bold;
+}
+
+.about-page-text ul.table-of-contents li.subhead ul {
+	font-weight: normal;
+}
+
+.about-page-text ul.table-of-contents li.subhead + li {
+	margin-top: 0.5em;
+}

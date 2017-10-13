@@ -172,6 +172,7 @@ Lobsters::Application.routes.draw do
 
     get "/privacy" => "home#privacy"
     get "/about" => "home#about"
+    get "/downvote_guidelines" => "home#downvote_guidelines"
     get "/chat" => "home#chat"
   end
 end
