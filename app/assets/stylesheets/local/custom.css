@@ -144,15 +144,9 @@ a.tag {
 	font-size: 1em;
 }
 .story .comments_label a {
-	color: #1f7f00;
+	color: #60007f;
 	text-decoration: none;
 }
 .story .comments_label .discuss-link {
 	font-weight: bold;
 }
-
-/* 
-.story a.description_present:visited {
-	color: #80a37a;
-}
- */
