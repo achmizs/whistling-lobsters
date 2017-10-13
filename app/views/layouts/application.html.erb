@@ -98,6 +98,8 @@
         <% if lookup_context.template_exists?("footer", "layouts", true) %>
           <%= render :partial => "layouts/footer" %>
         <% else %>
+          <a href="/rss">RSS</a>
+          <a href="https://github.com/achmizs/whistling-lobsters">Code</a>
           <a href="https://wiki.obormot.net/Lobsters/ITS">Issues</a>
           <a href="https://wiki.obormot.net/Lobsters/">Wiki</a>
           <a href="/moderations">Moderation Log</a>
