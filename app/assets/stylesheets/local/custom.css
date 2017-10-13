@@ -6,11 +6,22 @@ li.story div.details span.link a[href^="/"]:visited {
 	color: #80a37a;
 }
 
+#headerleft {
+	position: relative;
+	padding-left: 32px;
+}
+
+#headerright {
+	padding-top: 0.5em;
+}
+
 #l_holder {
 	width: 32px;
 	height: 32px;
-	position: relative;
-	top: -7px;
+	padding: 0;
+	position: absolute;
+	right: calc(100% - 33px);
+	top: -6px;
 }
 
 #l_holder img {
@@ -22,10 +33,6 @@ li.story div.details span.link a[href^="/"]:visited {
     width: 100%;
     max-height: calc(100vh - 180px);
     height: 1200px;
-}
-
-#header {
-	margin-left: -16px;
 }
 
 .about-page-text span {
@@ -96,3 +103,56 @@ li.story div.details span.link a[href^="/"]:visited {
 .about-page-text ul.table-of-contents li.subhead + li {
 	margin-top: 0.5em;
 }
+
+body {
+	margin: 0;
+	overflow: auto;
+}
+
+div#wrapper {
+	max-width: 800px;
+}
+
+#header {
+	margin-top: 4px;
+}
+
+#headerright {
+/* 
+	position: absolute;
+	left: 100%;
+	white-space: nowrap;
+ */
+}
+
+.story .story-second-line {
+	display: block;
+	font-size: 0.9em;
+}
+
+a.tag {
+	margin-left: 0;
+}
+
+.story .link {
+	margin-right: 1em;
+}
+
+.story .comments_label {
+	display: inline-block;
+	margin-left: 1em;
+	font-size: 1em;
+}
+.story .comments_label a {
+	color: #1f7f00;
+	text-decoration: none;
+}
+.story .comments_label .discuss-link {
+	font-weight: bold;
+}
+
+/* 
+.story a.description_present:visited {
+	color: #80a37a;
+}
+ */
