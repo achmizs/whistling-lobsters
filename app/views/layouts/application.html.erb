@@ -1,125 +1,156 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon.png" />
-  <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon.png" />
-  <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-144.png" />
-  <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144.png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="referrer" content="always" />
-  <meta name="theme-color" content="#AC130D" />
-  <% if @meta_tags %>
-    <% @meta_tags.each do |k,v| %>
-      <meta name="<%= k %>" content="<%= v %>" />
-    <% end %>
-  <% end %>
-  <%= favicon_link_tag %>
-  <% if @short_url %>
-    <link rev="canonical" rel="self alternate shorter shorturl shortlink"
-      href="<%= @short_url %>" />
-  <% end %>
-  <title><%= @title.present? ? "#{@title} | " : "" %><%=
-    Rails.application.name %></title>
-  <%= stylesheet_link_tag "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <% if @user %>
-    <script>
-      Lobsters.curUser = '<%= @user.id %>';
-    </script>
-  <% end %>
-  <%= csrf_meta_tags %>
-  <% if @rss_link %>
-    <link rel="alternate" type="application/rss+xml"
-      title="<%= @rss_link[:title] %>" href="<%= @rss_link[:href] %>" />
-  <% end %>
-  <% if @comments_rss_link %>
-    <link rel="alternate" type="application/rss+xml"
-      title="<%= @comments_rss_link[:title] %>"
-      href="<%= @comments_rss_link[:href] %>" />
-  <% end %>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon.png" />
+	<link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon.png" />
+	<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-144.png" />
+	<link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144.png" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="referrer" content="always" />
+	<meta name="theme-color" content="#AC130D" />
+	<% if @meta_tags %>
+		<% @meta_tags.each do |k,v| %>
+			<meta name="<%= k %>" content="<%= v %>" />
+		<% end %>
+	<% end %>
+	<%= favicon_link_tag %>
+	<% if @short_url %>
+		<link rev="canonical" rel="self alternate shorter shorturl shortlink"
+			href="<%= @short_url %>" />
+	<% end %>
+	<title><%= @title.present? ? "#{@title} | " : "" %><%=
+		Rails.application.name %></title>
+	<%= stylesheet_link_tag "application", :media => "all" %>
+	<%= javascript_include_tag "application" %>
+	<% if @user %>
+		<script>
+			Lobsters.curUser = '<%= @user.id %>';
+		</script>
+	<% end %>
+	<%= csrf_meta_tags %>
+	<% if @rss_link %>
+		<link rel="alternate" type="application/rss+xml"
+			title="<%= @rss_link[:title] %>" href="<%= @rss_link[:href] %>" />
+	<% end %>
+	<% if @comments_rss_link %>
+		<link rel="alternate" type="application/rss+xml"
+			title="<%= @comments_rss_link[:title] %>"
+			href="<%= @comments_rss_link[:href] %>" />
+	<% end %>
 </head>
 <body>
-  <div id="wrapper">
-    <div id="header">
-      <div id="headerleft">
-        <a id="l_holder" href="/" title="<%= Rails.application.name %> (Current traffic: <%=
-          @traffic.to_i %>)"><%= image_tag "favicon.ico" %></a>
+	<div id="wrapper">
+		<div id="inside">
+			<% [ :error, :success, :notice ].each do |f| %>
+				<% if flash[f].present? %>
+					<div class="flash-<%= f %>"><%= flash[f] %></div>
+				<% end %>
+			<% end %>
 
-        <% if @cur_url.present? && !header_links.keys.include?(@cur_url) &&
-        @heading.present? %>
-          <span id="headertitle">
-            <a href="<%= @cur_url %>"><%= @heading %></a>
-          </span>
-        <% end %>
+			<%= yield %>
 
-        <span class="headerlinks">
-          <% header_links.each do |u,v| %>
-            <a href="<%= u %>" class="<%= v[:class].join(" ") %>"><%=
-              v[:title] %></a>
-          <% end %>
-        </span>
-      </div>
+			<div id="footer">
+				<% if lookup_context.template_exists?("footer", "layouts", true) %>
+					<%= render :partial => "layouts/footer" %>
+				<% else %>
+					<a href="/rss">RSS</a>
+					<a href="https://github.com/achmizs/whistling-lobsters">Code</a>
+					<a href="https://wiki.obormot.net/Lobsters/ITS">Issues</a>
+					<a href="https://wiki.obormot.net/Lobsters/">Wiki</a>
+					<a href="/moderations">Moderation Log</a>
+					<% if @user && @user.can_see_invitation_requests? &&
+					(iqc = InvitationRequest.verified_count) > 0 %>
+						<a href="/invitations">Invitation Queue (<%= iqc %>)</a>
+					<% end %>
+					<% if @user && @user.is_moderator? &&
+					(hrc = HatRequest.count) > 0 %>
+						<a href="/hats/requests">Hat Requests (<%= hrc %>)</a>
+					<% else %>
+						<a href="/hats">Hats</a>
+					<% end %>
+					<a href="/chat">Chat</a>
+					<a href="/privacy">Privacy</a>
+					<a href="/about">About</a>
+				<% end %>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div id="leftColumn">
+		<div id="leftColumnTopSection">			
+			<!-- UNCOMMENT THIS HEADING IF YOU'RE WORKING ON THIS FEATURE
+			<h1>Commenters’s Choice</h1>
+			 -->
+			
+			<!-- CODE GOES HERE -->
+		</div>
+		<div id="leftColumnBottomSection">
+			<!-- UNCOMMENT THIS HEADING IF YOU'RE WORKING ON THIS FEATURE
+			<h1>Best of Whistling Lobsters</h1>
+			 -->
+			
+			<!-- CODE GOES HERE -->
+		</div>
+	</div>
+	<div id="rightColumn">
+		<div id="leftColumnTopSection">
+			<!-- UNCOMMENT THIS HEADING IF YOU'RE WORKING ON THIS FEATURE
+			<h1>Hot Topics</h1>
+			 -->
+			
+			<!-- CODE GOES HERE -->
+		</div>
+		<div id="leftColumnBottomSection">
+			<!-- UNCOMMENT THIS HEADING IF YOU'RE WORKING ON THIS FEATURE
+			<h1>Recent Comments</h1>
+			 -->
+			
+			<!-- CODE GOES HERE -->
+		</div>
+	</div>
+	<div id="header">
+		<div id="headerleft">
+			<a id="l_holder" href="/" title="<%= Rails.application.name %> (Current traffic: <%=
+				@traffic.to_i %>)"><%= image_tag "favicon.ico" %></a>
 
-      <div id="headerright">
-        <span class="headerlinks">
-          <% right_header_links.each do |u,v| %>
-            <a href="<%= u %>" class="<%= v[:class].join(" ") %>"><%=
-              v[:title] %></a>
-          <% end %>
-        </span>
-      </div>
+			<% if @cur_url.present? && !header_links.keys.include?(@cur_url) &&
+			@heading.present? %>
+				<span id="headertitle">
+					<a href="<%= @cur_url %>"><%= @heading %></a>
+				</span>
+			<% end %>
 
-      <div class="clear"></div>
+			<span class="headerlinks">
+				<% header_links.each do |u,v| %>
+					<a href="<%= u %>" class="<%= v[:class].join(" ") %>"><%=
+						v[:title] %></a>
+				<% end %>
+			</span>
+		</div>
 
-      <% if @cur_url =~ /^\/top/ %>
-        <div class="top_range_menu">
-          <span class="headerlinks">
-            <a href="/top/1d">Today</a>
-            <a href="/top/3d">3 Days</a>
-            <a href="/top/1w">Week</a>
-            <a href="/top/1m">Month</a>
-          </span>
-        </div>
-      <% end %>
-    </div>
+		<div id="headerright">
+			<span class="headerlinks">
+				<% right_header_links.each do |u,v| %>
+					<a href="<%= u %>" class="<%= v[:class].join(" ") %>"><%=
+						v[:title] %></a>
+				<% end %>
+			</span>
+		</div>
 
-    <div id="inside">
-      <% [ :error, :success, :notice ].each do |f| %>
-        <% if flash[f].present? %>
-          <div class="flash-<%= f %>"><%= flash[f] %></div>
-        <% end %>
-      <% end %>
+		<div class="clear"></div>
 
-      <%= yield %>
-
-      <div id="footer">
-        <% if lookup_context.template_exists?("footer", "layouts", true) %>
-          <%= render :partial => "layouts/footer" %>
-        <% else %>
-          <a href="/rss">RSS</a>
-          <a href="https://github.com/achmizs/whistling-lobsters">Code</a>
-          <a href="https://wiki.obormot.net/Lobsters/ITS">Issues</a>
-          <a href="https://wiki.obormot.net/Lobsters/">Wiki</a>
-          <a href="/moderations">Moderation Log</a>
-          <% if @user && @user.can_see_invitation_requests? &&
-          (iqc = InvitationRequest.verified_count) > 0 %>
-            <a href="/invitations">Invitation Queue (<%= iqc %>)</a>
-          <% end %>
-          <% if @user && @user.is_moderator? &&
-          (hrc = HatRequest.count) > 0 %>
-            <a href="/hats/requests">Hat Requests (<%= hrc %>)</a>
-          <% else %>
-            <a href="/hats">Hats</a>
-          <% end %>
-          <a href="/chat">Chat</a>
-          <a href="/privacy">Privacy</a>
-          <a href="/about">About</a>
-        <% end %>
-      </div>
-      <div class="clear"></div>
-    </div>
-  </div>
+		<% if @cur_url =~ /^\/top/ %>
+			<div class="top_range_menu">
+				<span class="headerlinks">
+					<a href="/top/1d">Today</a>
+					<a href="/top/3d">3 Days</a>
+					<a href="/top/1w">Week</a>
+					<a href="/top/1m">Month</a>
+				</span>
+			</div>
+		<% end %>
+	</div>
 </body>
 </html>

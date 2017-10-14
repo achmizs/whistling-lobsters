@@ -12,7 +12,8 @@ li.story div.details span.link a[href^="/"]:visited {
 }
 
 #headerright {
-	padding-top: 0.5em;
+	width: 320px;
+	text-align: left;
 }
 
 #l_holder {
@@ -107,22 +108,62 @@ li.story div.details span.link a[href^="/"]:visited {
 body {
 	margin: 0;
 	overflow: auto;
+	max-width: 1440px;
+	padding: 30px 0 0 0;
+	display: table;
+	margin: auto;
+	position: relative;
 }
 
 div#wrapper {
-	max-width: 800px;
+	float: left;
+	width: 100%;
+/* 	background-color: pink; */
+	margin-left: 320px;
+	max-width: calc(100% - 640px);
+}
+
+#leftColumn {
+	float: left;
+	width: 400px;
+	margin-left: calc(-1 * (100% - 320px));
+}
+#leftColumn::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 30px;
+	bottom: 0;
+	width: 320px;
+/* 	background-color: lightGreen; */
+	z-index: -1;
 }
 
 #header {
-	margin-top: 4px;
+	margin-top: 0;
+	padding-top: 4px;
+/* 	background-color: yellow; */
+	position: absolute;
+	top: 0px;
+	left: 320px;
+	height: 30px;
+	width: calc(100% - 320px);
 }
 
-#headerright {
-/* 
+#rightColumn {
+	width: 320px;
+	float: left;
+	padding-top: 10px;
+}
+#rightColumn::before {
+	content: "";
 	position: absolute;
-	left: 100%;
-	white-space: nowrap;
- */
+	right: 0px;
+	top: 30px;
+	bottom: 0;
+	width: 320px;
+/* 	background-color: lightBlue; */
+	z-index: -1;
 }
 
 .story .story-second-line {

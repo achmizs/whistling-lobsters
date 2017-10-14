@@ -8,6 +8,13 @@
 
 /* generics */
 
+html {
+	box-sizing: border-box;
+}
+*, *::before, *::after {
+	box-sizing: inherit;
+}
+
 /* force a vertical scrollbar to avoid page-shifting */
 html {
 	overflow-y: scroll;
@@ -51,7 +58,7 @@ a.tag {
 	border-radius: 5px;
 	color: #555;
 	margin-left: 0.25em;
-	padding: 3px 0.4em;
+	padding: 2px 0.4em 3px 0.4em;
 	text-decoration: none;
 	display: inline-block;
 	font-size: 0.9em;
