@@ -109,7 +109,7 @@ body {
 	margin: 0;
 	overflow: auto;
 	max-width: 1440px;
-	padding: 30px 0 0 0;
+	padding: 36px 0 0 0;
 	display: table;
 	margin: auto;
 	position: relative;
@@ -132,7 +132,7 @@ div#wrapper {
 	content: "";
 	position: absolute;
 	left: 0;
-	top: 30px;
+	top: 36px;
 	bottom: 0;
 	width: 320px;
 /* 	background-color: lightGreen; */
@@ -141,12 +141,12 @@ div#wrapper {
 
 #header {
 	margin-top: 0;
-	padding-top: 4px;
+	padding-top: 6px;
 /* 	background-color: yellow; */
 	position: absolute;
 	top: 0px;
 	left: 320px;
-	height: 30px;
+	height: 36px;
 	width: calc(100% - 320px);
 }
 
@@ -159,7 +159,7 @@ div#wrapper {
 	content: "";
 	position: absolute;
 	right: 0px;
-	top: 30px;
+	top: 36px;
 	bottom: 0;
 	width: 320px;
 /* 	background-color: lightBlue; */
