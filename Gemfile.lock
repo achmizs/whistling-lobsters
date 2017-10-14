@@ -82,6 +82,7 @@ GEM
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
     oauth (0.5.3)
+    puma (3.10.0)
     rack (2.0.3)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -171,6 +172,7 @@ DEPENDENCIES
   mysql2 (>= 0.3.14)
   nokogiri (>= 1.7.2)
   oauth
+  puma
   rails (~> 5.1)
   rotp
   rqrcode
@@ -180,4 +182,4 @@ DEPENDENCIES
   unicorn
 
 BUNDLED WITH
-   1.13.6
+   1.14.6
