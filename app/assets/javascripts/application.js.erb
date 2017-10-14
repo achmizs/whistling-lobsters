@@ -363,7 +363,7 @@ $(document).ready(function() {
     return false;
   });
 
-  $("span.link a[data-shortid]").click(function() {
+  $("span.link a[data-shortid]").mousedown(function() {
     var shortid = $(this).attr("data-shortid");
     Lobsters.clickStory(shortid);
   });
