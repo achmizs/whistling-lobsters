@@ -327,6 +327,10 @@ div#inside {
 	padding-left: 0.75em;
 }
 
+#recentcomments .comment_text {
+	max-height: 10em;
+}
+
 #header a.cur_url {
 	color: #333;
 }
