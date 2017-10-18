@@ -1,3 +1,6 @@
+require 'net/http'
+require 'uri'
+
 class StoriesController < ApplicationController
   before_action :require_logged_in_user_or_400,
     :only => [ :upvote, :downvote, :unvote, :hide, :unhide, :preview,
@@ -27,6 +30,17 @@ class StoriesController < ApplicationController
 
     if @story.valid? && !(@story.already_posted_story && !@story.seen_previous)
       if @story.save
+        if @story.url != ""
+          uri = URI.parse("http://archive.is/submit/")
+          request = Net::HTTP::Post.new(uri)
+          request.set_form_data("url" => @story.url)
+          begin
+            Net::HTTP.start(uri.hostname, uri.port, :read_timeout => 1) do |http|
+              http.request(request)
+            end
+          rescue
+          end
+        end
         Countinual.count!("#{Rails.application.shortname}.stories.submitted",
           "+1")
 
