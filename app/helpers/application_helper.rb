@@ -112,6 +112,7 @@ module ApplicationHelper
   end
 
   def recent_comments
+    @recentcomments = true;
     @comments = Comment.where(
       :is_deleted => false, :is_moderated => false
     ).order(
