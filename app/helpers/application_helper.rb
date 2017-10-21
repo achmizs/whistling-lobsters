@@ -111,6 +111,21 @@ module ApplicationHelper
     @right_header_links
   end
 
+  def recent_comments
+    @recentcomments = true;
+    @comments = Comment.where(
+      :is_deleted => false, :is_moderated => false
+    ).order(
+      "id DESC"
+    ).limit(
+      10
+    ).includes(
+      :user, :story
+    )
+
+    render "comments/index"
+  end
+
   def page_numbers_for_pagination(max, cur)
     if max <= MAX_PAGES
       return (1 .. max).to_a

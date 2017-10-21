@@ -17,16 +17,20 @@ class="comment <%= comment.current_vote ? (comment.current_vote[:vote] == 1 ?
     <% can_downvote = @user && @user.can_downvote?(comment) %>
     <% score_display = comment.score_for_user(@user) %>
     <div class="voters">
-      <% if @user %>
-        <a class="upvoter"></a>
+      <% if !(defined?(@recentcomments) && @recentcomments) %>
+        <% if @user %>
+          <a class="upvoter"></a>
+        <% else %>
+          <%= link_to "", login_path, :class => "upvoter" %>
+        <% end %>
+        <div class="score"><%= score_display %></div>
+        <% if can_downvote %>
+          <a class="downvoter"></a>
+        <% else %>
+          <span class="downvoter downvoter_stub"></span>
+        <% end %>
       <% else %>
-        <%= link_to "", login_path, :class => "upvoter" %>
-      <% end %>
-      <div class="score"><%= score_display %></div>
-      <% if can_downvote %>
-        <a class="downvoter"></a>
-      <% else %>
-        <span class="downvoter downvoter_stub"></span>
+        <div class="score"><%= score_display %></div>
       <% end %>
     </div>
     <% if defined?(children) && children %>
@@ -41,14 +45,16 @@ class="comment <%= comment.current_vote ? (comment.current_vote[:vote] == 1 ?
   <% end %>
   <div class="details">
     <div class="byline">
-      <a name="c_<%= comment.short_id %>"></a>
+      <% if !(defined?(@recentcomments) && @recentcomments) %>
+        <a name="c_<%= comment.short_id %>"></a>
 
-      <% if defined?(show_tree_lines) && show_tree_lines %>
-        <label for="comment_folder_<%= comment.short_id %>"
-          class="comment_folder comment_folder_inline"></label>
-      <% else %>
-        <label for="comment_folder_<%= comment.short_id %>"
-          class="comment_folder comment_folder_inline force_inline"></label>
+        <% if defined?(show_tree_lines) && show_tree_lines %>
+          <label for="comment_folder_<%= comment.short_id %>"
+            class="comment_folder comment_folder_inline"></label>
+        <% else %>
+          <label for="comment_folder_<%= comment.short_id %>"
+            class="comment_folder comment_folder_inline force_inline"></label>
+        <% end %>
       <% end %>
 
       <% if defined?(was_merged) && was_merged %>
@@ -77,11 +83,18 @@ class="comment <%= comment.current_vote ? (comment.current_vote[:vote] == 1 ?
         <% elsif comment.is_from_email? %>
           e-mailed
         <% end %>
-        <%= time_ago_in_words_label((comment.has_been_edited? ?
-          comment.updated_at : comment.created_at), :strip_about => true) %>
+        <% if defined?(@recentcomments) && @recentcomments %>
+          <a href="<%= comment.url %>">
+            <%= time_ago_in_words_label((comment.has_been_edited? ?
+              comment.updated_at : comment.created_at), :strip_about => true) %>
+          </a>
+        <% else %>
+          <%= time_ago_in_words_label((comment.has_been_edited? ?
+            comment.updated_at : comment.created_at), :strip_about => true) %>
+        <% end %>
       <% end %>
 
-      <% if !comment.previewing %>
+      <% if !comment.previewing && !(defined?(@recentcomments) && @recentcomments) %>
         |
         <a href="<%= comment.url %>">link</a>
 
