@@ -88,6 +88,9 @@ class="comment <%= comment.current_vote ? (comment.current_vote[:vote] == 1 ?
             <%= time_ago_in_words_label((comment.has_been_edited? ?
               comment.updated_at : comment.created_at), :strip_about => true) %>
           </a>
+        <% else %>
+          <%= time_ago_in_words_label((comment.has_been_edited? ?
+            comment.updated_at : comment.created_at), :strip_about => true) %>
         <% end %>
       <% end %>
 
