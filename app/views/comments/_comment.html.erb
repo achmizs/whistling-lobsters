@@ -17,16 +17,20 @@ class="comment <%= comment.current_vote ? (comment.current_vote[:vote] == 1 ?
     <% can_downvote = @user && @user.can_downvote?(comment) %>
     <% score_display = comment.score_for_user(@user) %>
     <div class="voters">
-      <% if @user %>
-        <a class="upvoter"></a>
+      <% if !(defined?(@recentcomments) && @recentcomments) %>
+        <% if @user %>
+          <a class="upvoter"></a>
+        <% else %>
+          <%= link_to "", login_path, :class => "upvoter" %>
+        <% end %>
+        <div class="score"><%= score_display %></div>
+        <% if can_downvote %>
+          <a class="downvoter"></a>
+        <% else %>
+          <span class="downvoter downvoter_stub"></span>
+        <% end %>
       <% else %>
-        <%= link_to "", login_path, :class => "upvoter" %>
-      <% end %>
-      <div class="score"><%= score_display %></div>
-      <% if can_downvote %>
-        <a class="downvoter"></a>
-      <% else %>
-        <span class="downvoter downvoter_stub"></span>
+        <div class="score"><%= score_display %></div>
       <% end %>
     </div>
     <% if defined?(children) && children %>
