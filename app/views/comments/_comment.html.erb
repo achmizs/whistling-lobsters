@@ -119,13 +119,17 @@ class="comment <%= comment.current_vote ? (comment.current_vote[:vote] == 1 ?
             |
             <a tabindex="0" class="comment_replier" unselectable="on">reply</a>
         <% end %>
+      <% end %>
 
+      <% if !comment.previewing %>
         <% if defined?(show_story) && show_story %>
-          | on:
+          <%if !(defined?(@recentcomments) && @recentcomments) %>|<% end %> on:
           <a href="<%= comment.story.comments_path %>"><%= comment.story.title
             %></a>
         <% end %>
+      <% end %>
 
+      <% if !comment.previewing && !(defined?(@recentcomments) && @recentcomments) %>
         <span class="reason">
           <% if comment.downvotes > 0 &&
           comment.showing_downvotes_for_user?(@user) &&
