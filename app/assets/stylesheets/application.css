@@ -21,14 +21,15 @@ html {
 	font-size: 16px;
 }
 
-body, textarea, input, button {
+body {
 	font-family: "Helvetica Neue", Arial, sans-serif;
-	color: #333;
 	line-height: 1.4;
+	background-color: #fefefe;
 }
 
-body {
-	background-color: #fefefe;
+textarea, input, button {
+	font-size: 0.8125rem;
+	font-family: inherit;
 }
 
 a {
@@ -1412,7 +1413,7 @@ div.fieldWithErrors {
 }
 
 .story-second-line {
-	margin: 3px 0 3px 0;
+	margin: 4px 0 3px 0;
 	font-size: 0.8125rem;
 }
 
