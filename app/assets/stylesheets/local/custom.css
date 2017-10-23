@@ -1,9 +1,14 @@
-li.story div.details span.link a[href^="/"] {
+li.story div.details .link a[href^="/"] {
 	color: #1f7f00;
 }
 
-li.story div.details span.link a[href^="/"]:visited {
+li.story div.details .link a[href^="/"]:visited {
 	color: #80a37a;
+}
+
+a.username,
+.byline a.username {
+    color: #7f6000;
 }
 
 #headerleft {
@@ -118,7 +123,6 @@ body {
 div#wrapper {
 	float: left;
 	width: 100%;
-/* 	background-color: pink; */
 	margin-left: 320px;
 	max-width: calc(100% - 640px);
 }
@@ -135,25 +139,24 @@ div#wrapper {
 	top: 40px;
 	bottom: 0;
 	width: 320px;
-/* 	background-color: lightGreen; */
 	z-index: -1;
 }
 
 #header {
 	margin-top: 0;
 	padding-top: 8px;
-/* 	background-color: yellow; */
 	position: absolute;
 	top: 0px;
 	left: 320px;
-	height: 40px;
+	min-height: 40px;
 	width: calc(100% - 320px);
 }
 
 #rightColumn {
 	width: 320px;
 	float: left;
-	padding-top: 10px;
+	overflow: auto;
+	padding: 1px 1px 2px 2px;
 }
 #rightColumn::before {
 	content: "";
@@ -162,13 +165,14 @@ div#wrapper {
 	top: 40px;
 	bottom: 0;
 	width: 320px;
-/* 	background-color: lightBlue; */
 	z-index: -1;
 }
-
-.story .story-second-line {
-	display: block;
-	font-size: 0.9em;
+#rightColumnBottomSection {
+	padding: 10px 8px;
+ 	background-color: #f6f6f6;
+ 	border: 1px solid #777;
+ 	box-shadow: -1px 1px #888, -2px 2px #888, 0 0 1px #888;
+ 	margin-top: 20px;
 }
 
 a.tag {

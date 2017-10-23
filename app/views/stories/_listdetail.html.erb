@@ -17,7 +17,7 @@ class="story <%= story.vote && story.vote[:vote] == 1 ? "upvoted" : "" %>
 		<div class="score"><%= story.score %></div>
 	</div>
 	<div class="details">
-		<span class="link">
+		<div class="link">
 			<% if story.can_be_seen_by_user?(@user) %>
 				<a href="<%= story.url_or_comments_path %>" data-shortid="<%= story.short_id %>"><%=
 					break_long_words(story.title) %></a>
@@ -26,7 +26,7 @@ class="story <%= story.vote && story.vote[:vote] == 1 ? "upvoted" : "" %>
 				[Story removed by <%= story.is_moderated? ? "moderator" :
 					"original submitter" %>]
 			<% end %>
-		</span>
+		</div>
 <!-- 
 		<% if story.markeddown_description.present? %>
 			<a class="description_present" title="<%= truncate(story.description,
@@ -37,7 +37,7 @@ class="story <%= story.vote && story.vote[:vote] == 1 ? "upvoted" : "" %>
 		<% end %>
  -->
 		<% if story.can_be_seen_by_user?(@user) %>
-			<span class="story-second-line">
+			<div class="story-second-line">
 				<% if story.domain.present? %>
 				<a class="domain" href="<%= story.domain_search_url %>"><%=
 					break_long_words(story.domain) %></a>
@@ -66,7 +66,7 @@ class="story <%= story.vote && story.vote[:vote] == 1 ? "upvoted" : "" %>
 						</a>
 					</span>
 				<% end %>
-			</span>
+			</div>
 
 			<% if defined?(single_story) && single_story %>
 				<% story.merged_stories.each do |ms| %>
@@ -89,7 +89,7 @@ class="story <%= story.vote && story.vote[:vote] == 1 ? "upvoted" : "" %>
 					</span>
 					<span class="byline">
 						<% if (@user && @user.show_avatars?) %>
-							<a href="/u/<%= ms.user.username %>"><%=
+							<a href="/u/<%= ms.user.username %> class='username'"><%=
 								avatar_img(ms.user, 16) %></a>
 						<% end %>
 						<% if story.user_is_author? %>
@@ -130,7 +130,7 @@ class="story <%= story.vote && story.vote[:vote] == 1 ? "upvoted" : "" %>
 				<% else %>
 					via
 				<% end %>
-				<a class="<%= story.html_class_for_user %>"><%=
+				<a class="<%= story.html_class_for_user %> username"><%=
 					story.user.username %></a>
 				just now
 			<% else %>
@@ -140,7 +140,7 @@ class="story <%= story.vote && story.vote[:vote] == 1 ? "upvoted" : "" %>
 					via
 				<% end %>
 				<a href="/u/<%= story.user.username %>" class="<%=
-					story.html_class_for_user %>"><%= story.user.username %></a>
+					story.html_class_for_user %> username"><%= story.user.username %></a>
 
 				<%= time_ago_in_words_label(story.created_at, :strip_about => true) %>
 

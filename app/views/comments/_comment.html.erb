@@ -29,8 +29,6 @@ class="comment <%= comment.current_vote ? (comment.current_vote[:vote] == 1 ?
         <% else %>
           <span class="downvoter downvoter_stub"></span>
         <% end %>
-      <% else %>
-        <div class="score"><%= score_display %></div>
       <% end %>
     </div>
     <% if defined?(children) && children %>
@@ -67,7 +65,7 @@ class="comment <%= comment.current_vote ? (comment.current_vote[:vote] == 1 ?
       <% end %>
 
       <a href="/u/<%= comment.user.username %>"
-        class="<%= comment.html_class_for_user %>"><%=
+        class="<%= comment.html_class_for_user %> username"><%=
         comment.user.username %></a>
 
       <% if comment.hat %>
@@ -124,8 +122,9 @@ class="comment <%= comment.current_vote ? (comment.current_vote[:vote] == 1 ?
       <% if !comment.previewing %>
         <% if defined?(show_story) && show_story %>
           <%if !(defined?(@recentcomments) && @recentcomments) %>|<% end %> on:
-          <a href="<%= comment.story.comments_path %>"><%= comment.story.title
-            %></a>
+			<div class='story-link'>
+				<a href="<%= comment.story.comments_path %>"><%= comment.story.title %> &#x2636</a>
+			</div>
         <% end %>
       <% end %>
 
