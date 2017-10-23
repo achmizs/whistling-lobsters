@@ -535,7 +535,8 @@ class Story < ActiveRecord::Base
   end
 
   def short_id_url
-    Rails.application.root_url + "s/#{self.short_id}"
+# 	Rails.application.root_url + "s/#{self.short_id}"
+	Rails.application.routes.url_helpers.root_path + "s/#{self.short_id}"
   end
 
   def sorted_taggings
