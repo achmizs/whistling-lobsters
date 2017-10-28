@@ -30,6 +30,7 @@ body {
 textarea, input, button {
 	font-size: 0.8125rem;
 	font-family: inherit;
+	line-height: inherit;
 }
 
 a {
@@ -153,7 +154,6 @@ select {
 input:focus,
 textarea:focus {
 	border-color: #888;
-	color: #303030;
 	outline: 0;
 }
 textarea:disabled {
@@ -215,7 +215,6 @@ select {
 }
 select:focus {
 	border-color: rgba(160,160,160,.8);
-	color: #303030;
 	outline: 0;
 }
 select::-moz-focus-inner {
@@ -1471,12 +1470,25 @@ div.fieldWithErrors {
 	display: initial;
 }
 
-#recentcomments .story-link a {
-	color: #2562dc;
+#recentcomments .story-link {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 100%;
+	overflow: hidden;
 }
 
+#recentcomments .story-link a {
+	color: #2565dc;
+}
+
+/* 
 #recentcomments .story-link a:visited {
 	color: #7395d9;
+}
+ */
+
+#recentcomments .story-link a::before {
+	content: "\2636\00A0";
 }
 
 .story_content,
