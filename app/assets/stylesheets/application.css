@@ -126,7 +126,7 @@ input,
 button,
 select,
 textarea {
-	color: #555;
+	color: inherit;
 	background-color: white;
 	padding: 3px 5px;
 }
