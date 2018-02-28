@@ -10,7 +10,7 @@
     <% @stories.each do |story| %>
       <item>
         <title><%= raw coder.encode(story.title, :decimal) %></title>
-        <link><%= story.comments_url %></link>
+        <link><%= "https://www.whistlinglobsters.net" + story.comments_url %></link>
         <guid isPermaLink="false"><%= story.short_id_url %></guid>
         <author><%= story.user.username %></author>
         <pubDate><%= story.created_at.rfc2822 %></pubDate>
